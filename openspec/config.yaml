@@ -1,0 +1,25 @@
+# OpenSpec 项目配置
+# 放置位置：项目根目录/openspec/config.yaml
+
+schema: with-review
+
+context: |
+  技术栈：React 19, TypeScript, Vite, Tailwind CSS 4, Zustand, Vitest
+  路由：React Router 7
+  代码规范：ESLint + Prettier
+  测试命令：npx vitest run
+  所有新功能必须遵循 TDD 节奏——先写失败测试，再写实现代码
+
+rules:
+  specs:
+    - 每个数据字段的变更，必须覆盖 null、空值、越界三种异常场景
+    - Scenario 必须使用 #### 四级标题，否则归档时不生效
+  design:
+    - 涉及数据结构变更的设计，必须包含迁移方案
+  tasks:
+    - 每个 task 必须包含完整的测试代码和实现代码
+    - 测试任务必须指定断言内容，不能只写「写测试」
+    - 每组 task 的第一步必须是写失败测试，最后一步必须是验证通过
+  review:
+    - 重点检查 tasks.md 的粒度是否达到 2-5 分钟一个 step
+    - 检查是否有占位符（TBD、TODO、implement later）

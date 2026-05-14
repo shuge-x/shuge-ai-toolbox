@@ -9,6 +9,7 @@ context: |
   代码规范：ESLint + Prettier
   测试命令：npx vitest run
   所有新功能必须遵循 TDD 节奏——先写失败测试，再写实现代码
+  所有工件必须用中文撰写（proposal、specs、design、review、tasks）
 
 rules:
   specs:

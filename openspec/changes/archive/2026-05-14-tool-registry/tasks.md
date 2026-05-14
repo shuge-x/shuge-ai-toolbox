@@ -894,7 +894,7 @@ if (missing.length > 0) {
 
 ---
 
-- [ ] **7.5：提交**
+- [x] **7.5：提交**
 
 ```bash
 git add scripts/validate-catalog.ts scripts/validate-catalog.test.ts package.json

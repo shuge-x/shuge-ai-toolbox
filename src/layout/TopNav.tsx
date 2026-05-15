@@ -5,16 +5,26 @@ export default function TopNav() {
   const isHome = location.pathname === '/';
 
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-gray-50 border-b border-gray-200">
-      <Link to="/" className="text-lg font-bold text-gray-900">
+    <nav
+      className="flex items-center justify-between px-6 py-4"
+      style={{ backgroundColor: 'var(--color-neutral-50)', borderBottom: '1px solid var(--color-neutral-200)' }}
+    >
+      <Link
+        to="/"
+        className="text-lg font-semibold"
+        style={{ color: 'var(--color-neutral-900)' }}
+      >
         shuge AI Toolbox
       </Link>
       <div className="flex gap-4">
         <Link
           to="/"
-          className={`px-3 py-1 rounded ${
-            isHome ? 'font-bold text-blue-600' : 'text-gray-600 hover:text-gray-900'
+          className={`px-3 py-1 rounded-md transition-colors ${
+            isHome ? 'font-bold' : 'hover:opacity-80'
           }`}
+          style={{
+            color: isHome ? 'var(--color-primary-500)' : 'var(--color-neutral-600)',
+          }}
         >
           首页
         </Link>

@@ -10,12 +10,16 @@ const tools = getTools();
 
 const toolRoutes = tools.map((tool) => ({
   path: `/tools/${tool.id}`,
-  element: tool.stage === 'planned' ? (
-    <PlaceholderPage tool={tool} />
-  ) : (
-    <Suspense fallback={<div className="p-4">加载中...</div>}>
-      <LazyTool tool={tool} />
-    </Suspense>
+  element: (
+    <Layout>
+      {tool.stage === 'planned' ? (
+        <PlaceholderPage tool={tool} />
+      ) : (
+        <Suspense fallback={<div className="p-4">加载中...</div>}>
+          <LazyTool tool={tool} />
+        </Suspense>
+      )}
+    </Layout>
   ),
 }));
 

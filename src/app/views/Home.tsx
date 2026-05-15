@@ -17,10 +17,17 @@ export default function Home() {
   const sortedCategories = Object.keys(grouped).sort();
 
   return (
-    <div className="space-y-8">
-      <div className="text-center py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">shuge AI Toolbox</h1>
-        <p className="text-gray-600">探索 AI 工具，提升工作效率</p>
+    <div className="space-y-12 px-6 py-8">
+      <div className="text-center py-12">
+        <h1
+          className="text-3xl font-bold mb-3"
+          style={{ color: 'var(--color-neutral-900)' }}
+        >
+          shuge AI Toolbox
+        </h1>
+        <p style={{ color: 'var(--color-neutral-500)' }}>
+          探索 AI 工具，提升工作效率
+        </p>
       </div>
 
       {sortedCategories.map((category) => {
@@ -32,32 +39,61 @@ export default function Home() {
 
         return (
           <section key={category}>
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">{category}</h2>
+            <h2
+              className="text-xl font-semibold mb-4"
+              style={{ color: 'var(--color-neutral-800)' }}
+            >
+              {category}
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {categoryTools.map((tool) => (
                 <Link
                   key={tool.id}
                   to={`/tools/${tool.id}`}
-                  className={`block p-4 rounded-lg border transition-colors ${
-                    tool.stage === 'planned'
-                      ? 'bg-gray-50 border-gray-200 opacity-75'
-                      : 'bg-white border-gray-200 hover:border-blue-400 hover:shadow-sm'
+                  className={`block p-5 rounded-xl border transition-all ${
+                    tool.stage === 'planned' ? 'opacity-60' : 'hover:shadow-md'
                   }`}
+                  style={{
+                    backgroundColor: 'var(--color-neutral-50)',
+                    borderColor: 'var(--color-neutral-200)',
+                  }}
                 >
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-medium text-gray-900">{tool.name}</h3>
+                    <h3
+                      className="font-medium"
+                      style={{ color: 'var(--color-neutral-900)' }}
+                    >
+                      {tool.name}
+                    </h3>
                     {tool.stage === 'planned' && (
-                      <span className="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
+                      <span
+                        className="text-xs px-2 py-0.5 rounded"
+                        style={{
+                          backgroundColor: 'var(--color-neutral-200)',
+                          color: 'var(--color-neutral-600)',
+                        }}
+                      >
                         Planned
                       </span>
                     )}
                     {tool.stage === 'beta' && (
-                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">
+                      <span
+                        className="text-xs px-2 py-0.5 rounded"
+                        style={{
+                          backgroundColor: 'var(--color-accent-100)',
+                          color: 'var(--color-accent-600)',
+                        }}
+                      >
                         Beta
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-600">{tool.description}</p>
+                  <p
+                    className="text-sm"
+                    style={{ color: 'var(--color-neutral-500)' }}
+                  >
+                    {tool.description}
+                  </p>
                 </Link>
               ))}
             </div>

@@ -1,6 +1,6 @@
 ## 1. 设计系统基础
 
-- [ ] 1.1 创建 design-tokens.css 文件
+- [x] 1.1 创建 design-tokens.css 文件
 
 **涉及文件：**
 - 新建：`src/theme/tokens.css`
@@ -105,7 +105,7 @@ git commit -m "feat: add design tokens CSS variables"
 
 ## 2. 修复 router bug
 
-- [ ] 2.1 修复 toolRoutes 未包裹 Layout
+- [x] 2.1 修复 toolRoutes 未包裹 Layout
 
 **涉及文件：**
 - 修改：`src/router/index.tsx`
@@ -181,7 +181,7 @@ git commit -m "fix: wrap toolRoutes with Layout for TopNav visibility"
 
 ## 3. 修复 index.html
 
-- [ ] 3.1 修正 index.html 的 lang 和 title
+- [x] 3.1 修正 index.html 的 lang 和 title
 
 **涉及文件：**
 - 修改：`index.html`
@@ -222,7 +222,7 @@ git commit -m "fix: correct lang and title in index.html"
 
 ## 4. 重设计 TopNav
 
-- [ ] 4.1 更新 TopNav.tsx 使用设计令牌
+- [x] 4.1 更新 TopNav.tsx 使用设计令牌
 
 **涉及文件：**
 - 修改：`src/layout/TopNav.tsx`
@@ -326,7 +326,7 @@ git commit -m "refactor: apply design tokens to TopNav"
 
 ## 5. 重设计 Home
 
-- [ ] 5.1 更新 Home.tsx 使用设计令牌
+- [x] 5.1 更新 Home.tsx 使用设计令牌
 
 **涉及文件：**
 - 修改：`src/app/views/Home.tsx`
@@ -457,7 +457,7 @@ git commit -m "refactor: apply design tokens to Home"
 
 ## 6. 重设计 PlaceholderPage
 
-- [ ] 6.1 更新 PlaceholderPage.tsx 使用设计令牌
+- [x] 6.1 更新 PlaceholderPage.tsx 使用设计令牌
 
 **涉及文件：**
 - 修改：`src/app/views/PlaceholderPage.tsx`
@@ -544,7 +544,7 @@ git commit -m "refactor: apply design tokens to PlaceholderPage"
 
 ## 7. 重设计 NotFound
 
-- [ ] 7.1 更新 NotFound.tsx 使用设计令牌
+- [x] 7.1 更新 NotFound.tsx 使用设计令牌
 
 **涉及文件：**
 - 修改：`src/app/views/NotFound.tsx`

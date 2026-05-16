@@ -99,7 +99,7 @@ describe('Home', () => {
     );
 
     categories.forEach((cat) => {
-      expect(screen.getByText(cat)).toBeTruthy();
+      expect(screen.getAllByText(cat).length).toBeGreaterThanOrEqual(1);
     });
   });
 

@@ -83,7 +83,7 @@ describe('Home Tab 导航', () => {
     fireEvent.click(textProcessingTab);
 
     const activeTab = screen.getByRole('button', { name: '文本处理' });
-    expect(activeTab.className).toContain('border-b-2');
+    expect(activeTab.style.borderColor).toBe('var(--color-primary-500)');
   });
 });
 

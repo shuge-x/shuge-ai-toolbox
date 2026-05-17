@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
-import type { ToolManifest } from '../../tool-registry/catalog';
+import { Clock } from 'lucide-react';
 
-interface PlaceholderPageProps {
-  tool: ToolManifest;
-}
-
-export default function PlaceholderPage({ tool }: PlaceholderPageProps) {
+export default function PlaceholderPage({ tool }: { tool: { name: string; description?: string } }) {
   const displayName = tool.name || '未命名工具';
 
   return (
@@ -38,12 +34,15 @@ export default function PlaceholderPage({ tool }: PlaceholderPageProps) {
             border: '1px solid var(--color-accent-200)',
           }}
         >
-          <p
-            className="text-sm"
-            style={{ color: 'var(--color-accent-600)' }}
-          >
-            ⏳ 该工具正在规划中，敬请期待。
-          </p>
+          <div className="flex items-center justify-center gap-2">
+            <Clock size={16} style={{ color: 'var(--color-accent-500)' }} />
+            <p
+              className="text-sm"
+              style={{ color: 'var(--color-accent-600)' }}
+            >
+              该工具正在规划中，敬请期待。
+            </p>
+          </div>
         </div>
         <Link
           to="/"

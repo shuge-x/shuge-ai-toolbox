@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { getTools } from '../tool-registry/catalog';
 import Layout from '../layout/Layout';
@@ -24,8 +24,11 @@ const toolRoutes = tools.map((tool) => ({
 }));
 
 function LazyTool({ tool }: { tool: (typeof tools)[number] }) {
-  const ToolComponent = lazy(() => import(`../modules/${tool.id}/index.tsx`));
-  return <ToolComponent />;
+  const Component = useMemo(
+    () => lazy(() => import(`../modules/${tool.id}/index.tsx`)),
+    [tool.id]
+  );
+  return <Component />;
 }
 
 const router = createBrowserRouter([

@@ -89,3 +89,5 @@ export function TextSummaryPage() {
     </div>
   );
 }
+
+export default TextSummaryPage;

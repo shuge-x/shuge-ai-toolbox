@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { getTools } from '../tool-registry/catalog';
 import Layout from '../layout/Layout';
@@ -8,28 +8,58 @@ import PlaceholderPage from '../app/views/PlaceholderPage';
 
 const tools = getTools();
 
+// Tool module loaders - using useEffect + import() because lazy() has issues
+// with Vite's dynamic import resolution for variable paths
+const toolModules: Record<string, () => Promise<{ default: React.ComponentType<unknown> }>> = {
+  'text-summary': () => import('/src/modules/text-summary/index.tsx'),
+};
+
+function ToolPage({ toolId }: { toolId: string }) {
+  const [Component, setComponent] = useState<React.ComponentType<unknown> | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loader = toolModules[toolId];
+    if (!loader) {
+      setError(`Tool not found: ${toolId}`);
+      return;
+    }
+    loader()
+      .then(mod => setComponent(() => mod.default))
+      .catch(e => setError(e.message));
+  }, [toolId]);
+
+  if (error) {
+    return <div className="p-4">Error: {error}</div>;
+  }
+
+  if (!Component) {
+    return <div className="p-4">加载中...</div>;
+  }
+
+  return <Component />;
+}
+
+function LazyTool({ tool }: { tool: ReturnType<typeof getTools>[number] }) {
+  if (tool.stage === 'planned') {
+    return <PlaceholderPage tool={tool} />;
+  }
+
+  return (
+    <Suspense fallback={<div className="p-4">加载中...</div>}>
+      <ToolPage toolId={tool.id} />
+    </Suspense>
+  );
+}
+
 const toolRoutes = tools.map((tool) => ({
   path: `/tools/${tool.id}`,
   element: (
     <Layout>
-      {tool.stage === 'planned' ? (
-        <PlaceholderPage tool={tool} />
-      ) : (
-        <Suspense fallback={<div className="p-4">加载中...</div>}>
-          <LazyTool tool={tool} />
-        </Suspense>
-      )}
+      <LazyTool tool={tool} />
     </Layout>
   ),
 }));
-
-function LazyTool({ tool }: { tool: (typeof tools)[number] }) {
-  const Component = useMemo(
-    () => lazy(() => import(`../modules/${tool.id}/index.tsx`)),
-    [tool.id]
-  );
-  return <Component />;
-}
 
 const router = createBrowserRouter([
   {

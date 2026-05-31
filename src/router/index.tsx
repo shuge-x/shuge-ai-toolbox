@@ -12,6 +12,7 @@ const tools = getTools();
 // with Vite's dynamic import resolution for variable paths
 const toolModules: Record<string, () => Promise<{ default: React.ComponentType<unknown> }>> = {
   'text-summary': () => import('/src/modules/text-summary/index.tsx'),
+  'json-formatter': () => import('/src/modules/json-formatter/index.tsx'),
 };
 
 function ToolPage({ toolId }: { toolId: string }) {

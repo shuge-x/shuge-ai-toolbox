@@ -43,10 +43,15 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
 
 4. **Initialize verification report structure**
 
-   Create a report structure with three dimensions:
+   Create a report structure with four dimensions:
    - **Completeness**: Track tasks and spec coverage
    - **Correctness**: Track requirement implementation and scenario coverage
    - **Coherence**: Track design adherence and pattern consistency
+   - **Task Granularity**: Track task format compliance, TDD adherence, code completeness, and granularity assessment
+     - Task format: Verify each task uses `### 任务 N` with file list and TDD five-step structure
+     - TDD compliance: Verify each task follows RED/GREEN/REFACTOR rhythm
+     - Code completeness: Verify no TBD/TODO placeholders exist in any task
+     - Granularity assessment: Evaluate if each task's estimated effort falls within 2-5 minute range
 
    Each dimension can have CRITICAL, WARNING, or SUGGESTION issues.
 
@@ -113,12 +118,13 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
    ```
    ## Verification Report: <change-name>
 
-   ### Summary
-   | Dimension    | Status           |
-   |--------------|------------------|
-   | Completeness | X/Y tasks, N reqs|
-   | Correctness  | M/N reqs covered |
-   | Coherence    | Followed/Issues  |
+    ### Summary
+    | Dimension        | Status           |
+    |------------------|------------------|
+    | Completeness     | X/Y tasks, N reqs|
+    | Correctness      | M/N reqs covered |
+    | Coherence        | Followed/Issues  |
+    | Task Granularity | Format/TDD/Code  |
    ```
 
    **Issues by Priority**:
@@ -155,7 +161,7 @@ Verify that an implementation matches the change artifacts (specs, tasks, design
 
 - If only tasks.md exists: verify task completion only, skip spec/design checks
 - If tasks + specs exist: verify completeness and correctness, skip design
-- If full artifacts: verify all three dimensions
+- If full artifacts: verify all four dimensions
 - Always note which checks were skipped and why
 
 **Output Format**

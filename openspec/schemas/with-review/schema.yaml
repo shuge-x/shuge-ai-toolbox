@@ -88,27 +88,24 @@ artifacts:
       - proposal
   - id: review
     generates: review.md
-    description: Five-dimension review before tasks generation
+    description: Four-dimension review with task splitting direction
     template: review.md
     instruction: |
-      从五个维度审查所有工件的完整性和质量。
+      从四个维度审查 proposal、specs 和 design 的完整性和质量。
+      为即将生成的 tasks.md 提供拆分方向和优先级建议。
 
       审查维度：
       1. **边界条件**：Spec 是否覆盖 null、空值、越界等异常场景
-      2. **回滚方案**：数据库变更是否包含回滚策略
+      2. **回滚方案**：变更是否包含回滚策略（数据库迁移、API 变更等）
       3. **测试覆盖**：Design 是否明确了需要测试的场景和用例
       4. **向后兼容**：是否分析了现有接口和数据的兼容性影响
-      5. **任务粒度**（最重要）：tasks.md 的每个 step 是否达到 2-5 分钟粒度、是否附带完整代码、是否有占位符
-
-      对维度 5 的检查标准：
-      - ✅ 通过：每个 step 有完整代码块 + 运行命令 + 预期输出
-      - ⚠️ 警告：部分 step 缺少代码或命令
-      - ❌ 失败：存在占位符（TBD/TODO）或 step 粒度超过 10 分钟
 
       输出格式：
       - 每个维度给出明确状态：✅ 通过 / ⚠️ 警告 / ❌ 失败
       - 警告和失败必须给出具体建议
-      - 给出整体评估 + 针对 tasks.md 的具体建议
+      - 给出整体评估 + 针对 tasks 拆分方向的具体建议（任务分组建议、优先级排序、粒度标准）
+
+      注意：本审查在 tasks.md 生成之前执行。不要声称审查了 tasks.md，而是基于 specs 和 design 预判任务拆分方向。任务粒度的实际验证由 /opsx:verify 在 apply 之后执行。
     requires:
       - proposal
       - specs

@@ -503,7 +503,7 @@ git commit -m "feat(text-summary): implement TextSummaryPage component"
 命令：`npx vitest run src/router/index.test.tsx`
 预期：PASS
 
-- [ ] 5.4 **最终提交**
+- [x] 5.4 **最终提交**
 ```bash
 git add -A
 git commit -m "feat: implement text-summary tool page"

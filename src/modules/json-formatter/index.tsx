@@ -147,3 +147,5 @@ export function JsonFormatterPage() {
     </div>
   );
 }
+
+export default JsonFormatterPage;
